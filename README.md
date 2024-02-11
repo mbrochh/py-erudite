@@ -48,7 +48,8 @@ that you can also read the original source again if you need to.
 * run `docker-compose build`
 * run `docker-compose up`
 * run `docker-compose exec backend python /app/pyerudite/manage.py createsuperuser`
-* enter username, email and password
+  * NOTE: You only need to do this the very first time you run the container
+  * enter username, email and password
 * browse to `localhost:8000/admin` and try to login
 
 Note: After this, there should be a folder `artefacts` which contains a file
