@@ -39,3 +39,17 @@ summaries.
 At this stage you can ask anything about anything you have ever consumed and
 the system will provide a meaningful answer and lilst the quoted sources so
 that you can also read the original source again if you need to.
+
+# How to run
+
+* clone this repo
+* run `cd backend && cp local_settings.py.sample local_settings.py`
+* edit `local_settings.py` and insert the necessary values
+* run `docker-compose build`
+* run `docker-compose up`
+* run `docker-compose exec backend python /app/pyerudite/manage.py createsuperuser`
+* enter username, email and password
+* browse to `localhost:8000/admin` and try to login
+
+Note: After this, there should be a folder `artefacts` which contains a file
+`django.sqlite3`. This is the Django database file.

@@ -1,0 +1,2 @@
+# see https://djecrety.ir/
+SECRET_KEY = 'YOUR SECRET KEY HERE'
