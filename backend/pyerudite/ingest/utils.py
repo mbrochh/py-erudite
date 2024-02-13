@@ -1,6 +1,7 @@
 """Utility functions for the ingest app."""
 
 import datetime
+import hashlib
 import os
 
 import yt_dlp
@@ -26,8 +27,8 @@ def download_audio(
     if audio_path is None:
         audio_path = os.path.join(settings.MEDIA_ROOT, "ingest/audio")
 
-    date_str = datetime.datetime.now().strftime("%Y-%m-%d_")
-    outtmpl = os.path.join(audio_path, date_str + "%(title)s.%(ext)s")
+    filename = hashlib.sha256(video_url.encode()).hexdigest()
+    outtmpl = os.path.join(audio_path, filename + ".%(ext)s")
 
     ydl_opts = {
         "format": "bestaudio/best",
