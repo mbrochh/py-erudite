@@ -26,5 +26,6 @@ def get_slugified_filename(file_path):
     """
     original_path, original_filename = os.path.split(file_path)
     original_file_base, file_ext = os.path.splitext(original_filename)
-    slugified_base = slugify(original_filename)
-    return slugified_base, file_ext.lower()
+    slugified_base = slugify(original_file_base)
+    file_ext = file_ext.lower()
+    return slugified_base, file_ext
