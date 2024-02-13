@@ -23,6 +23,12 @@ class IngestFromSource(models.Model):
     :status: The status of the ingest job.
     :source_type: The type of the source. For now only "youtube".
     :source_url: The URL of the source.
+    :title: The title of the source (ie the title of the Youtube video).
+    :authors: Comma separated list of authors of the source (ie the Youtube
+      channel name and the names of people that speak in that video).
+    :audio_path: The path to the audio file.
+    :transcript_path: The path to the transcript file.
+    :summary_path: The path to the summary file.
     :created_at: The time at which the source was added.
 
     """
@@ -34,4 +40,9 @@ class IngestFromSource(models.Model):
     source_url = models.URLField()
     title = models.CharField(max_length=1024)
     authors = models.CharField(max_length=1024)
+    audio_path = models.FileField(upload_to="ingest/audio/", blank=True)
+    transcript_path = models.FileField(
+        upload_to="ingest/transcripts/", blank=True
+    )
+    summary_path = models.FileField(upload_to="ingest/summaries/", blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
