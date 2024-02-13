@@ -2,9 +2,11 @@ openai==1.12.0
 Django==5.0.2
 faster-whisper==0.10.0
 yt-dlp==2023.12.30
-django-extensions==3.2.3
+tiktoken==0.6.0
+spacy==3.7.2
 
 # dev dependencies
 black==24.1.1
+django-extensions==3.2.3
 isort==5.13.2
 ipdb==0.13.13

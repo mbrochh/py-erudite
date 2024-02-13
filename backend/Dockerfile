@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y gcc wget gunicorn
 COPY requirements.txt /app/
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
+RUN python -m spacy download en_core_web_sm
+
 COPY entrypoint.sh /app/
 RUN chmod +x /app/entrypoint.sh
 
