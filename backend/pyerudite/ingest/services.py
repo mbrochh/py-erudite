@@ -1,11 +1,13 @@
 """Services for the ingest app."""
 
+from summarize.models import SummarizeFromIngest
+
 from . import utils
 
 
-def summarize_video(ingest_obj):
+def transcribe_video(ingest_obj):
     """
-    Summarize the video.
+    Transcribes a video and creates a SummarizeFromIngest object.
 
     :ingest_obj: The IngestFromSource object.
 
@@ -29,5 +31,7 @@ def summarize_video(ingest_obj):
 
     ingest_obj.status = "completed"
     ingest_obj.save()
+
+    SummarizeFromIngest.objects.create(ingest_obj=ingest_obj)
 
     return ingest_obj
