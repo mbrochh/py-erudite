@@ -28,7 +28,6 @@ class IngestFromSource(models.Model):
       channel name and the names of people that speak in that video).
     :audio_path: The path to the audio file.
     :transcript_path: The path to the transcript file.
-    :summary_path: The path to the summary file.
     :created_at: The time at which the source was added.
 
     """
@@ -44,5 +43,4 @@ class IngestFromSource(models.Model):
     transcript_path = models.FileField(
         upload_to="ingest/transcripts/", blank=True
     )
-    summary_path = models.FileField(upload_to="ingest/summaries/", blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
