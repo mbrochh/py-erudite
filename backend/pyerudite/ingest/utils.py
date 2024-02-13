@@ -4,12 +4,16 @@ import datetime
 import os
 
 import yt_dlp
+from django.conf import settings
 from faster_whisper import WhisperModel
 
 from pyerudite.utils import get_slugified_filename
 
 
-def download_audio(video_url, audio_path):
+def download_audio(
+    video_url=None,
+    audio_path=None,
+):
     """
     Download audio from video.
 
@@ -19,6 +23,9 @@ def download_audio(video_url, audio_path):
     :returns: Filename of the audio.
 
     """
+    if audio_path is None:
+        audio_path = os.path.join(settings.MEDIA_ROOT, "ingest/audio")
+
     date_str = datetime.datetime.now().strftime("%Y-%m-%d_")
     outtmpl = os.path.join(audio_path, date_str + "%(title)s.%(ext)s")
 
@@ -37,7 +44,7 @@ def download_audio(video_url, audio_path):
     return new_file_path
 
 
-def transcribe_audio(audio_file_path, transcripts_path):
+def transcribe_audio(audio_file_path=None, transcripts_path=None):
     """
     Transcribe audio file using Whisper model.
 
@@ -47,6 +54,11 @@ def transcribe_audio(audio_file_path, transcripts_path):
     :returns: Filename of the transcript.
 
     """
+    if transcripts_path is None:
+        transcripts_path = os.path.join(
+            settings.MEDIA_ROOT, "ingest/transcripts"
+        )
+
     model_size = "base"
     model = WhisperModel(model_size, device="cpu", compute_type="int8")
 
@@ -62,6 +74,6 @@ def transcribe_audio(audio_file_path, transcripts_path):
         os.makedirs(transcripts_path)
 
     with open(transcript_file_path, "w") as f:
-        f.write(" ".join(transcript))
+        f.write("\n".join(transcript))
 
     return transcript_file_path
