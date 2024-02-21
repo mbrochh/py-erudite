@@ -1,0 +1,2 @@
+*/1 * * * * /usr/local/bin/python /app/pyerudite/manage.py ingest >> /artefacts/logs/backend/cron/ingest.log 2>&1
+*/1 * * * * /usr/local/bin/python /app/pyerudite/manage.py summarize >> /artefacts/logs/backend/cron/summarize.log 2>&1

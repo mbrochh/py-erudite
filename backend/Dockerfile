@@ -9,11 +9,14 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y gcc wget gunicorn
+RUN apt-get update && apt-get install -y gcc wget gunicorn cron vim
 
 # Install Python dependencies
 COPY requirements.txt /app/
 RUN pip install --upgrade pip && pip install -r requirements.txt
+
+COPY crontab.txt /app/
+RUN crontab /app/crontab.txt
 
 RUN python -m spacy download en_core_web_sm
 
