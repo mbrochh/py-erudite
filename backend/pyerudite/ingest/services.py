@@ -18,8 +18,8 @@ def transcribe_video(ingest_obj):
     ingest_obj.save()
 
     video_url = ingest_obj.source_url
-    audio_file_path = utils.download_audio(video_url=video_url)
-
+    audio_file_path, title = utils.download_audio(video_url=video_url)
+    ingest_obj.title = title
     ingest_obj.audio_path = audio_file_path
     ingest_obj.save()
 
