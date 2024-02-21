@@ -37,8 +37,8 @@ class IngestFromSource(models.Model):
     )
     source_type = models.CharField(max_length=100, choices=INGEST_SOURCES)
     source_url = models.URLField()
-    title = models.CharField(max_length=1024)
-    authors = models.CharField(max_length=1024)
+    title = models.CharField(max_length=1024, blank=True)
+    authors = models.CharField(max_length=1024, blank=True)
     audio_path = models.FileField(upload_to="ingest/audio/", blank=True)
     transcript_path = models.FileField(
         upload_to="ingest/transcripts/", blank=True
