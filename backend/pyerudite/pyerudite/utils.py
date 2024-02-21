@@ -1,5 +1,6 @@
 """Project wide utility functions."""
 
+import datetime
 import os
 import re
 
@@ -29,3 +30,7 @@ def get_slugified_filename(file_path):
     slugified_base = slugify(original_file_base)
     file_ext = file_ext.lower()
     return slugified_base, file_ext
+
+
+def timestamp():
+    return str(datetime.datetime.now())[:19]
