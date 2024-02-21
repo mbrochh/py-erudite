@@ -9,6 +9,7 @@ class SummarizeFromIngestAdmin(admin.ModelAdmin):
     """Admin class for the SummarizeFromIngest model."""
 
     list_display = (
+        "id",
         "status",
         "input_tokens",
         "output_tokens",
