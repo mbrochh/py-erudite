@@ -6,6 +6,8 @@ Management command to work off SummarizeFromIngest objects with status `pending`
 import os
 
 from django.core.management.base import BaseCommand
+
+from pyerudite.utils import timestamp
 from summarize.models import SummarizeFromIngest
 from summarize.services import summarize_text
 
@@ -13,7 +15,7 @@ from summarize.services import summarize_text
 class Command(BaseCommand):
     help = "Works off SummarizeFromIngest objects with status `pending`."
     lock_file_path = "/artefacts/tmp/"
-    lock_file_name = "get_summaries.lock"
+    lock_file_name = "summaries.lock"
 
     def handle(self, *args, **options):
         """
@@ -27,7 +29,9 @@ class Command(BaseCommand):
 
         if os.path.exists(lockfile_path):
             self.stdout.write(
-                self.style.ERROR(f"Lock file `{lockfile_path}` exists.")
+                self.style.WARNING(
+                    f"[{timestamp()}] Lock file `{lockfile_path}` exists."
+                )
             )
             return
 
@@ -41,12 +45,24 @@ class Command(BaseCommand):
             os.remove(lockfile_path)
             self.stdout.write(
                 self.style.SUCCESS(
-                    f"Lock file `{lockfile_path}` removed."
+                    f"[{timestamp()}] Lock file `{lockfile_path}` removed."
                     " Process completed."
                 )
             )
 
     def _handle(self):
         jobs = SummarizeFromIngest.objects.filter(status="pending")
+        self.stdout.write(
+            self.style.NOTICE(
+                f"[{timestamp()}] Found {jobs.count()} SummarizeFromIngest"
+                " objects with status `pending`."
+            )
+        )
         for job in jobs:
+            self.stdout.write(
+                self.style.NOTICE(
+                    f"[{timestamp()}] Processing SummarizeFromIngest ({job.id})"
+                    f" for source {job.ingest_obj.source_url}."
+                )
+            )
             summarize_text(summarize_obj=job)
