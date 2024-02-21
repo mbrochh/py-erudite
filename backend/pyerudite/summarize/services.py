@@ -24,6 +24,7 @@ def summarize_text(summarize_obj=None):
     summaries = utils.summarize_chunks(chunks=chunks, title=title)
 
     filename, extension = get_slugified_filename(file_path=text_path)
+
     summarize_obj = utils.save_summaries(
         summarize_obj=summarize_obj,
         summaries=summaries,
