@@ -39,10 +39,11 @@ def download_audio(
         info_dict = ydl.extract_info(video_url, download=True)
         output_file_path = ydl.prepare_filename(info_dict)
 
+    title = info_dict.get("title", "Unkown title")
     filename, extension = get_slugified_filename(output_file_path)
     new_file_path = os.path.join(audio_path, f"{filename}{extension}")
     os.rename(output_file_path, new_file_path)
-    return new_file_path
+    return new_file_path, title
 
 
 def transcribe_audio(audio_file_path=None, transcripts_path=None):
