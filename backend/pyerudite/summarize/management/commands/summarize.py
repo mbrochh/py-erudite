@@ -15,7 +15,7 @@ from summarize.services import summarize_text
 class Command(BaseCommand):
     help = "Works off SummarizeFromIngest objects with status `pending`."
     lock_file_path = "/artefacts/tmp/"
-    lock_file_name = "summaries.lock"
+    lock_file_name = "summarize.lock"
 
     def handle(self, *args, **options):
         """
