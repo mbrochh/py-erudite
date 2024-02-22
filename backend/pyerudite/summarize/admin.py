@@ -23,6 +23,7 @@ class SummarizeFromIngestAdmin(admin.ModelAdmin):
         "ingest_obj__title",
         "ingest_obj__authors",
     )
+    raw_id_fields = ("ingest_obj",)
 
 
 admin.site.register(models.SummarizeFromIngest, SummarizeFromIngestAdmin)

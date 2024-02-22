@@ -146,6 +146,7 @@ def save_summaries(
     summarize_obj.output_tokens = total_output_tokens_used
     summarize_obj.input_cost = total_input_cost
     summarize_obj.output_cost = total_output_cost
+    summarize_obj.summary = summary_path
     summarize_obj.status = "completed"
     summarize_obj.save()
 
