@@ -1,6 +1,7 @@
 """Admin classes for the summarize app."""
 
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from . import models
 
@@ -11,8 +12,8 @@ class SummarizeFromIngestAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "status",
-        "input_tokens",
-        "output_tokens",
+        "source_url",
+        "source_title",
         "input_cost",
         "output_cost",
         "created_at",
@@ -24,6 +25,24 @@ class SummarizeFromIngestAdmin(admin.ModelAdmin):
         "ingest_obj__authors",
     )
     raw_id_fields = ("ingest_obj",)
+    readonly_fields = (
+        "source_title",
+        "source_url",
+        "summary",
+    )
+
+    def source_title(self, obj):
+        return obj.ingest_obj.title
+
+    def source_url(self, obj):
+        return mark_safe(
+            f"<a href='{obj.ingest_obj.source_url}'>{obj.ingest_obj.source_url}</a>"
+        )
+
+    def summary(self, obj):
+        with open(obj.summary_path.path, "r") as file:
+            summary = file.read()
+        return summary
 
 
 admin.site.register(models.SummarizeFromIngest, SummarizeFromIngestAdmin)
