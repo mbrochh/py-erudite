@@ -2,6 +2,7 @@
 
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from django.template.defaultfilters import linebreaksbr
 
 from . import models
 
@@ -41,8 +42,23 @@ class SummarizeFromIngestAdmin(admin.ModelAdmin):
 
     def summary(self, obj):
         with open(obj.summary_path.path, "r") as file:
-            summary = file.read()
-        return summary
+            lines = file.readlines()
+
+        token_count = obj.input_tokens or 0 + obj.output_tokens or 0
+        cost = obj.input_cost or 0 + obj.output_cost or 0
+        result = f"Summarized [[{obj.ingest_obj.title}]]<br /><br />"
+        result += "<textarea style='width:100%; height:300px;'>\n"
+        result += f"source:: {obj.ingest_obj.source_url}\n"
+        result += f"authors:: {obj.ingest_obj.authors}\n"
+        result += f"gpt-token-count:: {token_count}\n"
+        result += f"summary-cost:: {cost}\n"
+        result += "second-brain:: true\n"
+        result += "\n"
+        result += "[[Summary]]\n"
+        for line in lines:
+            result += f'\t{line}\n'
+        result += "</textarea>"
+        return mark_safe(result)
 
 
 admin.site.register(models.SummarizeFromIngest, SummarizeFromIngestAdmin)
