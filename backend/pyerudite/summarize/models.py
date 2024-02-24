@@ -29,7 +29,7 @@ class SummarizeFromIngest(models.Model):
         on_delete=models.CASCADE,
         related_name="summaries",
     )
-    summary_path = models.FileField(upload_to="summarize/summaries")
+    summary_path = models.FileField(upload_to="summarize/summaries", blank=True)
     input_tokens = models.IntegerField(blank=True, null=True)
     output_tokens = models.IntegerField(blank=True, null=True)
     input_cost = models.DecimalField(
