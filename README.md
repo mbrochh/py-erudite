@@ -76,8 +76,10 @@ that you can also read the original source again if you need to.
 * Once the status is `Completed`, you can click into that object and read
   the summary.
 
-Note: After this, there should be a folder `artefacts` which contains the
-following files:
+# The `artefacts` folder
+
+Note: After you have used the tool for summarizing at least one video, there 
+should be a folder `artefacts` which contains the following files:
 
 * `django_media`
     * This folder contains files that the system has downloaded or generated
