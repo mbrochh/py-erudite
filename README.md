@@ -2,7 +2,11 @@
 
 This is a little side project for now. 
 
-Current status: Functional.
+Current status: Functional. Creating summaries of Youtube videos works, but
+"talking to your own notes" is not yet implemented.
+
+At this stage, I am using this daily to summarize videos and copy the summaries
+into my [Logseq Graph](https://logseq.com/).
 
 ## Goal
 
