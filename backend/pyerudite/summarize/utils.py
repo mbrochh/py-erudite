@@ -1,6 +1,8 @@
 """Utility functions for the summarize app."""
 
+import csv
 import os
+from io import StringIO
 
 import openai
 import spacy
@@ -8,6 +10,21 @@ import tiktoken
 from django.conf import settings
 
 from . import prompts
+
+
+def get_authors_list(authors_str=None):
+    """
+    Convert a string of authors into a list of authors.
+
+    :authors_str: A string of authors, separated by commas.
+
+    :returns: A list of authors.
+
+    """
+    authors_str = StringIO(authors_str or "")
+    reader = csv.reader(authors_str, delimiter=",")
+    authors_list = list(reader)[0]
+    return authors_list
 
 
 def count_tokens(text=None, model=None):
@@ -151,3 +168,7 @@ def save_summaries(
     summarize_obj.save()
 
     return summarize_obj
+
+
+if __name__ == "__main__":
+    print(get_authors_list('Unherd,"Someone, Dr"'))

@@ -6,7 +6,7 @@ Current status: Functional. Creating summaries of Youtube videos works, but
 "talking to your own notes" is not yet implemented.
 
 At this stage, I am using this daily to summarize videos and copy the summaries
-into my [Logseq Graph](https://logseq.com/).
+into my [Obsidian Graph](https://obsidian.md/).
 
 ## Goal
 
@@ -23,7 +23,7 @@ into my [Logseq Graph](https://logseq.com/).
   page
 * DONE:  The summaries will be created with GPT4, until an equally smart open source 
   LLM comes along
-* DONE: The summaries will be formatted such that they can be copied into Logseq
+* DONE: The summaries will be formatted such that they can be copied into Obsidian
 * TODO: Instead of the Django admin, everything should have a nice reactive
   frontend
 
