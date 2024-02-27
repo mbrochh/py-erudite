@@ -25,7 +25,9 @@ class IngestFromSource(models.Model):
     :source_url: The URL of the source.
     :title: The title of the source (ie the title of the Youtube video).
     :authors: Comma separated list of authors of the source (ie the Youtube
-      channel name and the names of people that speak in that video).
+      channel name and the names of people that speak in that video). NOTE:
+      There should be no spaces after the commas, so that the list can be
+      interpreted by the csv module. Example: `Author1,Author2,"Author3, Dr"`.
     :audio_path: The path to the audio file.
     :transcript_path: The path to the transcript file.
     :created_at: The time at which the source was added.
