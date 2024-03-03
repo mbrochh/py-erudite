@@ -5,6 +5,16 @@ import os
 import re
 
 
+def clean_title(value):
+    """
+    Removes `:/\`, which are characters that Obisidon (and operating systems)
+    do not like for filenames.
+
+    """
+    value = re.sub(r" ?[:/\\] ?", " - ", value)
+    return value
+
+
 def slugify(value):
     """
     Normalizes a string: converts to lowercase, removes non-alpha characters,

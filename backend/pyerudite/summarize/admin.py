@@ -4,6 +4,8 @@ from django.contrib import admin
 from django.template.defaultfilters import linebreaksbr
 from django.utils.safestring import mark_safe
 
+from pyerudite.utils import clean_title
+
 from . import models, utils
 
 
@@ -45,10 +47,11 @@ class SummarizeFromIngestAdmin(admin.ModelAdmin):
             lines = file.readlines()
 
         authors_list = utils.get_authors_list(obj.ingest_obj.authors)
+        title = clean_title(obj.ingest_obj.title)
 
         token_count = obj.input_tokens or 0 + obj.output_tokens or 0
         cost = obj.input_cost or 0 + obj.output_cost or 0
-        result = f"Summarized [[{obj.ingest_obj.title}]]<br /><br />"
+        result = f"Summarized [[{title}]]<br /><br />"
         result += "<textarea style='width:100%; height:300px;'>\n"
         result += f"---\n"
         result += f"source: {obj.ingest_obj.source_url}\n"
