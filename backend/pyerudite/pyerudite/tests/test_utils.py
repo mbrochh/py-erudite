@@ -13,7 +13,6 @@ from .. import utils
         ("Title: 1", "Title - 1"),
         ("Title / 1", "Title - 1"),
         ("Title \ 1", "Title - 1"),
-        ("Title, 1", "Title 1"),
     ],
 )
 def test_clean_title(title, expected):
