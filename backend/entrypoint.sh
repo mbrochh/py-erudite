@@ -19,6 +19,10 @@ python manage.py migrate
 # Collect static files
 python manage.py collectstatic --noinput
 
+# reset potential in_progress jobs
+python manage.py reset_in_progress_ingest
+python manage.py reset_in_progress_summarize
+
 # Start the cron service
 service cron start
 
