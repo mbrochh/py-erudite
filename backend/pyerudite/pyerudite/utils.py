@@ -1,8 +1,18 @@
 """Project wide utility functions."""
 
+import hashlib
 import datetime
 import os
 import re
+
+
+def get_filename_from_url(url):
+    """
+    Returns a filename from a URL by hashing it.
+
+    """
+    filename = hashlib.sha256(url.encode()).hexdigest()
+    return filename
 
 
 def clean_title(value):

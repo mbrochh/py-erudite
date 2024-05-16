@@ -4,6 +4,7 @@ faster-whisper==0.10.0
 yt-dlp==2023.12.30
 tiktoken==0.6.0
 spacy==3.7.2
+trafilatura==1.9.0
 
 # dev dependencies
 black==24.1.1

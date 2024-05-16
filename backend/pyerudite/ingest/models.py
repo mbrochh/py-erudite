@@ -13,7 +13,7 @@ INGEST_STATUS = (
     ("cancelled", "Cancelled"),
 )
 
-INGEST_SOURCES = (("youtube", "Youtube"),)
+INGEST_SOURCES = (("youtube", "Youtube"), ("webpage", "Webpage"))
 
 
 class IngestFromSource(models.Model):

@@ -9,7 +9,7 @@ from django.core.management.base import BaseCommand
 
 from pyerudite.utils import timestamp
 from ingest.models import IngestFromSource
-from ingest.services import transcribe_video
+from ingest.services import transcribe_video, fetch_webpage
 from summarize.models import SummarizeFromIngest
 
 
@@ -66,4 +66,7 @@ class Command(BaseCommand):
                     f" for source {job.source_url}."
                 )
             )
-            transcribe_video(ingest_obj=job)
+            if job.source_type == "youtube":
+                transcribe_video(ingest_obj=job)
+            if job.source_type == "webpage":
+                fetch_webpage(ingest_obj=job)
