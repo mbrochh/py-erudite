@@ -8,8 +8,6 @@ from .models import IngestFromSource
 
 @csrf_exempt
 def ingest_view(request):
-    if request.method == "OPTIONS":
-        return JsonResponse({"status": "success"}, status=200)
     if request.method == "POST":
         data = json.loads(request.body)
         url = data.get("url")
