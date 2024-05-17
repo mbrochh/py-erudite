@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Send URL and Title</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    form { display: flex; flex-direction: column; width: 300px; }
+    label { margin-top: 10px; }
+    input[type="text"] { padding: 5px; }
+    button { margin-top: 10px; padding: 5px; }
+    #popup-container {
+      min-width: 300px;
+      min-height: 200px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="popup-container">
+    <form id="data-form">
+      <label for="url">URL:</label>
+      <input type="text" id="url" name="url">
+
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title">
+
+      <label for="authors">Authors:</label>
+      <input type="text" id="authors" name="authors">
+
+      <button type="submit">Send</button>
+    </form>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

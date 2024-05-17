@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name": "py-erudite scraper",
+    "version": "0.1",
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
+  
