@@ -1,8 +1,17 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  document.getElementById("url").value = tab.url;
-  document.getElementById("title").value = tab.title;
+  let url = tab.url;
+  if (url.includes("&")) {
+    url = url.split("&")[0];
+  }
+  let title = tab.title;
+  if (title.includes(" - YouTube")) {
+    title = title.replace(" - YouTube", "");
+  }
+
+  document.getElementById("url").value = url;
+  document.getElementById("title").value = title;
 
   document
     .getElementById("data-form")
@@ -26,6 +35,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       const data = await response.json();
-      console.log(data);
+
+      // if data contains {'status': 'success'}, then show success message:
+      if (data.status === "success") {
+        document.getElementById("data-form").style.display = "none";
+        document.getElementById("success").style.display = "block";
+      }
     });
 });
