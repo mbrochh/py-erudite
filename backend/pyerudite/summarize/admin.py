@@ -63,9 +63,10 @@ class SummarizeFromIngestAdmin(admin.ModelAdmin):
         result += f"summary-cost: {cost}\n"
         result += "second-brain: true\n"
         result += f"---\n"
-        result += "\n"
         result += "# Summary\n"
         for line in lines:
+            if not line.strip():
+                continue
             result += f"{line}"
         result += "</textarea>"
         return mark_safe(result)
