@@ -52,7 +52,7 @@ class SummarizeFromIngestAdmin(admin.ModelAdmin):
         token_count = obj.input_tokens or 0 + obj.output_tokens or 0
         cost = obj.input_cost or 0 + obj.output_cost or 0
         result = f"Summarized [[{title}]]<br /><br />"
-        result += "<textarea style='width:100%; height:300px;'>\n"
+        result += "<textarea style='width:1000px; height:300px;'>\n"
         result += f"---\n"
         result += f"source: {obj.ingest_obj.source_url}\n"
         if authors_list:
