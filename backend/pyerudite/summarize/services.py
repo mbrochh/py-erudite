@@ -1,11 +1,8 @@
 """Services for the summarize app."""
 
-import openai
-from django.conf import settings
-
 from pyerudite.utils import get_slugified_filename
 
-from . import prompts, utils
+from . import utils
 
 
 def summarize_text(summarize_obj=None):
@@ -17,9 +14,7 @@ def summarize_text(summarize_obj=None):
     """
     text_path = summarize_obj.ingest_obj.transcript_path.path
     title = summarize_obj.ingest_obj.title
-    chunks, total_token_count = utils.split_text(
-        text_path=text_path, title=title
-    )
+    chunks, total_token_count = utils.split_text(text_path=text_path, title=title)
 
     summaries = utils.summarize_chunks(chunks=chunks, title=title)
 

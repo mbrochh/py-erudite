@@ -1,7 +1,6 @@
 """Admin classes for the summarize app."""
 
 from django.contrib import admin
-from django.template.defaultfilters import linebreaksbr
 from django.utils.safestring import mark_safe
 
 from pyerudite.utils import clean_title
@@ -53,16 +52,16 @@ class SummarizeFromIngestAdmin(admin.ModelAdmin):
         cost = obj.input_cost or 0 + obj.output_cost or 0
         result = f"Summarized [[{title}]]<br /><br />"
         result += "<textarea style='width:1000px; height:300px;'>\n"
-        result += f"---\n"
+        result += "---\n"
         result += f"source: {obj.ingest_obj.source_url}\n"
         if authors_list:
-            result += f"authors:\n"
+            result += "authors:\n"
             for author in authors_list:
                 result += f'  - "[[{author}]]"\n'
         result += f"gpt-token-count: {token_count}\n"
         result += f"summary-cost: {cost}\n"
         result += "second-brain: true\n"
-        result += f"---\n"
+        result += "---\n"
         result += "# Summary\n"
         for line in lines:
             if not line.strip():

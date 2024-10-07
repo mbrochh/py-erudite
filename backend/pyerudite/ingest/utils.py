@@ -1,13 +1,13 @@
 """Utility functions for the ingest app."""
 
-from trafilatura import fetch_url, extract
 import os
 
 import yt_dlp
 from django.conf import settings
 from faster_whisper import WhisperModel
+from trafilatura import extract, fetch_url
 
-from pyerudite.utils import get_slugified_filename, get_filename_from_url
+from pyerudite.utils import get_filename_from_url, get_slugified_filename
 
 
 def extract_text_from_webpage(webpage_url=None, transcripts_path=None):
@@ -21,9 +21,7 @@ def extract_text_from_webpage(webpage_url=None, transcripts_path=None):
 
     """
     if transcripts_path is None:
-        transcripts_path = os.path.join(
-            settings.MEDIA_ROOT, "ingest/transcripts"
-        )
+        transcripts_path = os.path.join(settings.MEDIA_ROOT, "ingest/transcripts")
 
     downloaded = fetch_url(webpage_url)
     text = extract(downloaded)
@@ -86,9 +84,7 @@ def transcribe_audio(audio_file_path=None, transcripts_path=None):
 
     """
     if transcripts_path is None:
-        transcripts_path = os.path.join(
-            settings.MEDIA_ROOT, "ingest/transcripts"
-        )
+        transcripts_path = os.path.join(settings.MEDIA_ROOT, "ingest/transcripts")
 
     model_size = "base"
     model = WhisperModel(model_size, device="cpu", compute_type="int8")
