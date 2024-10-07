@@ -21,6 +21,7 @@ def get_authors_list(authors_str=None):
     :returns: A list of authors.
 
     """
+    authors_str = authors_str.replace('", "', '","')
     authors_str = StringIO(authors_str or "")
     reader = csv.reader(authors_str, delimiter=",")
     authors_list = list(reader)[0]
