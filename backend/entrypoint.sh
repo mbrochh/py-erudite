@@ -12,6 +12,8 @@ rm /artefacts/tmp/summarize.lock
 # Navigate to the Django project directory (if necessary)
 cd /app/pyerudite
 
+# Install dependencies
+pip install -r /app/requirements.txt
 
 # Apply database migrations
 python manage.py migrate
